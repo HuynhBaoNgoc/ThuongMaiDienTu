@@ -22,7 +22,7 @@ namespace Final.Controllers
             db.Quyens.Add(quyen2);
             db.SaveChanges();
             KhachHang khachHang1 = new KhachHang();
-            khachHang1.TenKH = "Trần Anh Đức";
+            khachHang1.TenKH = "Huỳnh Bảo Ngọc";
             khachHang1.SDT = "0933131760";
             khachHang1.MaQuyen = 1;
             khachHang1.DiaChi = "36 Tôn Đản Q4 SaiGon";
