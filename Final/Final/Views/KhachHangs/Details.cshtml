@@ -1,0 +1,82 @@
+﻿@model Final.Models.KhachHang
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<div class="jumbotron" style="width:100%">
+    <div class="container" style="width:80%">
+        <div class="card">
+            <div class="row">
+                <div class="col-md-3">
+                    <img class="card-img-top" src="~/dist/img/boy.png" alt="Card image" style="width:100%">
+                </div>
+                <div class="col-md-9">
+                    <div class="card-body">
+                        <dl class="dl-horizontal" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size:20px">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Quyen.TenQuyen)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Quyen.TenQuyen)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.TenKH)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.TenKH)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.DiaChi)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.DiaChi)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.SDT)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.SDT)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.UserName)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.UserName)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Password)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Password)
+                            </dd>
+
+                        </dl>
+                       
+                    </div>
+                </div>
+                <a class="btn btn-danger" style="font-family:'Bookman Old Style';padding:15px;float:right" href="@Url.Action("Logout","Authentication")">Logout</a>
+            </div> 
+        </div>
+        <hr />
+    </div>
+</div>

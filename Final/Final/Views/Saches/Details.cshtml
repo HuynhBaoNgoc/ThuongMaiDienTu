@@ -1,0 +1,59 @@
+﻿@model Final.Models.Sach
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<main>
+    <!-- Hero Area Start-->
+    <div class="slider-area ">
+        <div class="single-slider slider-height2 d-flex align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2>Book Detail</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero Area End-->
+    <!--================Single Product Area =================-->
+    <div class="product_image_area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="product_img_slide owl-carousel">
+                        <div class="single_product_img">
+                            <img src="@Html.DisplayFor(model => model.Hinh)" alt="#" class="img-fluid" style="width:995px;height:668px">
+                        </div>
+                        <div class="single_product_img">
+                            <img src="~/assets_home/img/gallery/details_1.png" alt="#" class="img-fluid">
+                        </div>
+                        <div class="single_product_img">
+                            <img src="~/assets_home/img/gallery/details_2.jpg" alt="#" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="single_product_text text-center">
+                        <h3>
+                            @Html.DisplayFor(model => model.TenSach)
+                        </h3>
+                        <p>
+                            OKRs – bí mật của tăng trưởng lấy trọng tâm là phương pháp OKRs (Mục tiêu – Kết quả then chốt) và truyền tải sinh động phương pháp thực hiện cũng như tình huống áp dụng thông qua câu chuyện khởi nghiệp của Hanna và Jack. Khi cả hai nhận được tối hậu thư từ nhà đầu tư duy nhất, họ nhận ra mình buộc phải áp dụng chiến lược Mục tiêu và Kết quả chính (OKRs) với sức tập trung triệt để để hoàn thành đúng công việc. Liệu Jack và Hanna có thể cứu được công ty khởi nghiệp của họ không? Hay họ sẽ sa lầy vào hàng tá phiền nhiễu và lựa chọn khi cạn kiệt thời gian?
+                        </p>
+                        <div class="card_area">
+                            <div class="add_to_cart">
+                                <a href="@Url.Action("AddIntoCart","Home", new { maSach =  @Html.DisplayFor(model => model.MaSach) })" class="btn_3" style="margin-left:14px">add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

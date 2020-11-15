@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="GioHangs">
+    <Key>
+      <PropertyRef Name="MaGioHang" />
+    </Key>
+    <Property Name="MaGioHang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaKH" Type="int" />
+    <Property Name="MaSach" Type="int" />
+    <Property Name="SoLuong" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Saches">
+    <Key>
+      <PropertyRef Name="MaSach" />
+    </Key>
+    <Property Name="MaSach" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenSach" Type="nvarchar(max)" />
+    <Property Name="GiaBan" Type="int" Nullable="false" />
+    <Property Name="NgayXuatBan" Type="nvarchar(max)" />
+    <Property Name="LoaiBia" Type="nvarchar(max)" />
+    <Property Name="SoTrang" Type="int" Nullable="false" />
+    <Property Name="Hinh" Type="nvarchar(max)" />
+    <Property Name="MaDanhMuc" Type="int" />
+  </EntityType>
+  <Association Name="FK_dbo_GioHangs_dbo_Saches_MaSach">
+    <End Role="Saches" Type="Self.Saches" Multiplicity="0..1" />
+    <End Role="GioHangs" Type="Self.GioHangs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Saches">
+        <PropertyRef Name="MaSach" />
+      </Principal>
+      <Dependent Role="GioHangs">
+        <PropertyRef Name="MaSach" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="GioHangs" EntityType="Self.GioHangs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Saches" EntityType="Self.Saches" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_dbo_GioHangs_dbo_Saches_MaSach" Association="Self.FK_dbo_GioHangs_dbo_Saches_MaSach">
+      <End Role="Saches" EntitySet="Saches" />
+      <End Role="GioHangs" EntitySet="GioHangs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

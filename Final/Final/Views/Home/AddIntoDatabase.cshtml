@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "AddIntoDatabase";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<main>
+    <!-- Hero Area Start-->
+    <div class="slider-area ">
+        <div class="single-slider slider-height2 d-flex align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2>Confirmation</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--================ confirmation part start =================-->
+    <section class="confirmation_part section_padding">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="order_details_iner">
+                        <h2 style="color:unset">Order Details</h2>
+                        <h3>Name : @Session["UserName"].ToString()</h3>
+                        <h3>Address : @Session["UserAddress"].ToString()</h3>
+                        <table class="table table-borderless">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th scope="col" colspan="2">Product</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Total</th>
+                                </tr>
+                            </thead>
+                            @foreach (var item in (dynamic)ViewData["data"])
+                            {
+                                <tbody>
+                                    <tr>
+                                        <th>@item.Ngay</th>
+                                        <th colspan="2"><span>@item.TenSach</span></th>
+                                        <th>@item.SoLuong</th>
+                                        <th> <span style="color:red">@item.ThanhTien.ToString("#,##0").Replace(',', '.') $</span></th>
+                                    </tr>
+                                </tbody>
+                            }
+                            <tfoot>
+                                <tr>
+                                    <th scope="col" colspan="4"></th>
+                                    <th scope="col" style="color:darkred;font-weight:600">@ViewBag.totalMoney.ToString("#,##0").Replace(',', '.') $</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!--================ confirmation part end =================-->
+</main>
+

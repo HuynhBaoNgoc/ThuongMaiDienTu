@@ -1,0 +1,480 @@
+﻿@{
+    ViewBag.Title = "Bookie | eCommers";
+    Layout = "~/Views/Shared/_EmptyLayout.cshtml";
+}
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Bookie | eCommers</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="~/assets_home/img/favicon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <!-- CSS here -->
+    @Styles.Render("~/HomeCSS")
+</head>
+
+<body>
+    <!--? Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle" style="background-color:rgba(255, 251, 251, 0.57)"></div>
+                <div class="preloader-img pere-text">
+                    <img src="https://toppng.com/uploads/preview/experience-the-discussion-online-library-book-logo-11562996058ru4peza6zq.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+    <header>
+        <!-- Header Start -->
+        <div class="header-area">
+            <div class="main-header header-sticky">
+                <div class="container-fluid">
+                    <div class="menu-wrapper">
+                        <!-- Logo -->
+                        <div class="logo">
+                            <a href="@Url.Action("Index","Home")" class="logo"><b style="font-size:45px;font-family:'Bookman Old Style';color:#ad2e2e">Bookie</b></a>
+                        </div>
+                        <!-- Main-menu -->
+                        <div class="main-menu d-none d-lg-block">
+                            <nav>
+                                <ul id="navigation">
+                                    <li><a href="@Url.Action("Index","Home")">Trang Chủ</a></li>
+                                    <li class="hot"><a href="@Url.Action("Shop","Home")">Cửa Hàng</a></li>
+                                    <li class="new">
+                                        <a href="#">Tài Khoản</a>
+                                        <ul class="submenu">
+                                            @if (Session["kh"] != null)
+                                            {
+
+                                                <li><a href="@Url.Action("Details","KhachHangs",new { id=Session["UserID"].ToString()})"> @Session["UserName"].ToString()</a></li>
+                                                <li><a href="@Url.Action("LogOut","Authentication")"> Đăng Xuất</a></li>
+                                            }
+                                            else
+                                            {
+                                                <li><a href="@Url.Action("Login","Authentication")"> Đăng Nhập</a></li>
+                                                <li><a href="@Url.Action("Register","Authentication")"> Đăng Ký</a></li>
+                                            }
+
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Blog","Home")">Tin Tức</a>
+                                        <ul class="submenu">
+                                            <li><a href="@Url.Action("Blog","Home")">Trang Tin Tức</a></li>
+                                            <li><a href="@Url.Action("BlogDetails","Home")">Chi Tiết</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Cart","Home")">Giỏ Hàng</a>
+                                    </li>
+                                    <li><a href="@Url.Action("Contact","Home")">Liên Lạc</a></li>
+                                    <li>
+                                        <a href="#">Tiếng Việt</a>
+                                        <ul class="submenu">
+                                            <li class="active"><a href="@Url.Action("English","Home")">Tiếng Anh</a></li>
+                                            <li><a href="@Url.Action("Vietnamese","Home")">Tiếng Việt</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- Header Right -->
+                        <div class="header-right">
+                            <ul>
+                                <li>
+                                    <div class="nav-search search-switch">
+                                        <span class="flaticon-search"></span>
+                                    </div>
+                                </li>
+                                @if (Session["kh"] != null)
+                                {
+                                    <li> <a href="@Url.Action("Details","KhachHangs",new {id = Session["UserID"].ToString() })"><span class="flaticon-user"> @Session["UserName"].ToString()</span></a></li>
+                                    <li><a href="cart.html"><span class="flaticon-shopping-cart"></span></a> </li>
+                                }
+                                else
+                                {
+                                    <li> <a href="@Url.Action("Login","Authentication")"><span class="flaticon-user"></span></a></li>
+                                    <li><a href="@Url.Action("Cart","Home")"><span class="flaticon-shopping-cart"></span></a> </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Mobile Menu -->
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
+    <main>
+        <!--? slider Area Start -->
+        <div class="slider-area ">
+            <div class="slider-active">
+                <!-- Single Slider -->
+                <div class="single-slider slider-height d-flex align-items-center slide-bg">
+                    <div class="container">
+                        <div class="row justify-content-between align-items-center">
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                                <div class="hero__caption">
+                                    <h1 data-animation="fadeInLeft" data-delay=".4s" data-duration="2000ms">Sách Tốt  <hr />Cuộc Đời Tốt</h1>
+                                    <p data-animation="fadeInLeft" data-delay=".7s" data-duration="2000ms">Một người không đọc sách thì chẳng hơn gì một người không biết chữ. (Mark Twain)</p>
+                                    <!-- Hero-btn -->
+                                    <div class="hero__btn" data-animation="fadeInLeft" data-delay=".8s" data-duration="2000ms">
+                                        <a href="@Url.Action("Shop","Home")" class="btn hero-btn">Mua Ngay</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 d-none d-sm-block">
+                                <div class="hero__img" data-animation="bounceIn" data-delay=".4s">
+                                    <img src="~/assets_home/img/hero/rsz_—pngtree—books_in_the_library_3760888.png" alt="" class=" heartbeat">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Slider -->
+                <div class="single-slider slider-height d-flex align-items-center slide-bg">
+                    <div class="container">
+                        <div class="row justify-content-between align-items-center">
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                                <div class="hero__caption">
+                                    <h1 data-animation="fadeInLeft" data-delay=".4s" data-duration="2000ms">Good Books  <hr />Good Life</h1>
+                                    <p data-animation="fadeInLeft" data-delay=".7s" data-duration="2000ms">A person who won’t read has no advantage over one who can’t read. (Mark Twain)</p>
+                                    <!-- Hero-btn -->
+                                    <div class="hero__btn" data-animation="fadeInLeft" data-delay=".8s" data-duration="2000ms">
+                                        <a href="@Url.Action("Shop","Home")" class="btn hero-btn">Mua Ngay</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 d-none d-sm-block">
+                                <div class="hero__img" data-animation="bounceIn" data-delay=".4s">
+                                    <img src="~/assets_home/img/hero/rsz_—pngtree—books_in_the_library_3760888.png" alt="" class=" heartbeat">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- slider Area End-->
+        <!-- ? New Product Start -->
+        <section class="new-product-area section-padding30">
+            <div class="container">
+                <!-- Section tittle -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="section-tittle mb-70">
+                            <h2>Sách Mới</h2>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-new-pro mb-30 text-center">
+                            <div class="product-img">
+                                <img src="~/assets_home/img/gallery/book4.png" alt="">
+                            </div>
+                            <div class="product-caption">
+                                <h3><a href="@Url.Action("Shop","Home")">Quạ Đen</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-new-pro mb-30 text-center">
+                            <div class="product-img">
+                                <img src="~/assets_home/img/gallery/book1.png" alt="">
+                            </div>
+                            <div class="product-caption">
+                                <h3><a href="@Url.Action("Shop","Home")">Gia Tộc Rockefeller</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-new-pro mb-30 text-center">
+                            <div class="product-img">
+                                <img src="~/assets_home/img/gallery/book3.png" alt="">
+                            </div>
+                            <div class="product-caption">
+                                <h3><a href="@Url.Action("Shop","Home")">Dự Án Phượng Hoàng</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+        </section>
+        <!--  New Product End -->
+        <!--? Gallery Area Start -->
+
+        <div class="gallery-area">
+            <div class="container-fluid p-0 fix">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-gallery mb-30">
+                            <img class="gallery-img big-img" src="~/assets_home/img/gallery/gallery1.png" />
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-gallery mb-30">
+                            <img class="gallery-img big-img" src="~/assets_home/img/gallery/cover_book1.jpg" />
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-12">
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6">
+                                <div class="single-gallery mb-30">
+                                    <img class="gallery-img small-img" src="~/assets_home/img/gallery/cover_book2.jpg" />
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-lg-12  col-md-6 col-sm-6">
+                                <div class="single-gallery mb-30">
+                                    <img class="gallery-img small-img" src="~/assets_home/img/gallery/cover_book3.jpg" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <hr />
+        <!-- Gallery Area End -->
+        <!--? Popular Items Start -->
+        <div class="popular-items section-padding30">
+            <div class="container">
+                <!-- Section tittle -->
+                <div class="row justify-content-center">
+                    <div class="col-xl-7 col-lg-8 col-md-10">
+                        <div class="section-tittle mb-70 text-center">
+                            <h2>Phổ Biến</h2>
+                            <p>Một quyển sách tốt như một người bạn tốt . Tuy ít nhưng phải có chọn lọc .<hr />Chọn càng nhiều thì càng thích thú</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-popular-items mb-50 text-center">
+                            <div class="popular-img">
+                                <img src="~/assets_home/img/gallery/popular2.jpg" alt="">
+                                <div class="img-cap">
+                                    <span style="background-color:rgba(176, 41, 41, 0.59)"><a href="#"><i class="fa fa-shopping-cart" style="font-size:30px"></i></a></span>
+                                </div>
+                                <div class="favorit-items">
+                                    <span class="flaticon-heart"></span>
+                                </div>
+                            </div>
+                            <div class="popular-caption">
+                                <h3><a href="product_details.html">Book Thief</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-popular-items mb-50 text-center">
+                            <div class="popular-img">
+                                <img src="~/assets_home/img/gallery/popular1.jpg" alt="">
+                                <div class="img-cap">
+                                    <span style="background-color:rgba(135, 14, 14, 0.84)"><a href="#"><i class="fa fa-shopping-cart" style="font-size:30px"></i> Mua</a></span>
+                                </div>
+                                <div class="favorit-items">
+                                    <span class="flaticon-heart"></span>
+                                </div>
+                            </div>
+                            <div class="popular-caption">
+                                <h3><a href="product_details.html">Bank 4.0</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-popular-items mb-50 text-center">
+                            <div class="popular-img">
+                                <img src="~/assets_home/img/gallery/popular2.jpg" alt="">
+                                <div class="img-cap">
+                                    <span style="background-color:rgba(176, 41, 41, 0.59)"><a href="#"><i class="fa fa-shopping-cart" style="font-size:30px"></i></a></span>
+                                </div>
+                                <div class="favorit-items">
+                                    <span class="flaticon-heart"></span>
+                                </div>
+                            </div>
+                            <div class="popular-caption">
+                                <h3><a href="product_details.html">Book Thief</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Button -->
+                <div class="row justify-content-center">
+                    <div class="room-btn pt-70">
+                        <a href="@Url.Action("Shop","Home")" class="btn view-btn1">Xem Thêm</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Popular Items End -->
+        <!--? Video Area Start -->
+        <div class="video-area">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-12">
+                        <div class="video-wrap">
+                            <div class="play-btn "><a class="popup-video" href="https://www.youtube.com/watch?v=Hjc03nySrbw"><i class="fas fa-play"></i></a></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Arrow -->
+                <div class="thumb-content-box" style="background-color:#ad2e2e">
+                    <div class="thumb-content">
+                        <h3>Video Tiếp Theo</h3>
+                        <a href="#"> <i class="flaticon-arrow"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Video Area End -->
+        <br />
+        <hr />
+        <br />
+        <!--? Shop Method Start-->
+        <div class="shop-method-area">
+            <div class="container">
+                <div class="method-wrapper">
+                    <div class="row d-flex justify-content-between">
+                        <div class="col-xl-4 col-lg-4 col-md-6" style="background-color:#ad2e2e">
+                            <div class="single-method mb-40">
+                                <i class="ti-package"></i>
+                                <h6>Free Shipping Method</h6>
+                                <p>Miễn phí vận chuyển cho đơn hàng trên 500.000 đồng.</p>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-6" style="background-color:#ad2e2e">
+                            <div class="single-method mb-40">
+                                <i class="ti-unlock"></i>
+                                <h6>Secure Payment System</h6>
+                                <p>Thông tin của bạn sẽ được bảo đảm an toàn.</p>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-6" style="background-color:#ad2e2e">
+                            <div class="single-method mb-40">
+                                <i class="ti-reload"></i>
+                                <h6>Quality Assurance</h6>
+                                <p>Luôn luôn mang đến những sản phẩm tốt nhất với giá rẻ nhất.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Shop Method End-->
+    </main>
+    <footer>
+        <!-- Footer Start-->
+        <div class="footer-area footer-padding">
+            <div class="container">
+                <div class="row d-flex justify-content-between">
+                    <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6">
+                        <div class="single-footer-caption mb-50">
+                            <div class="single-footer-caption mb-30">
+                                <!-- logo -->
+                                <div class="footer-logo">
+                                    <a href="@Url.Action("Index","Home")" class="logo"><b style="font-size:45px;font-family:'Bookman Old Style';color:#ad2e2e">Bookie</b></a>
+                                </div>
+                                <div class="footer-tittle">
+                                    <div class="footer-pera">
+                                        <p>Luôn luôn làm hài hòng khách hàng.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-3 col-sm-5">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Quick Links</h4>
+                                <ul>
+                                    <li><a href="#">About</a></li>
+                                    <li><a href="#"> Offers & Discounts</a></li>
+                                    <li><a href="#"> Get Coupon</a></li>
+                                    <li><a href="#">  Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-7">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>New Products</h4>
+                                <ul>
+                                    <li><a href="#">Sách Kinh Doanh</a></li>
+                                    <li><a href="#">Tiểu Thuyết</a></li>
+                                    <li><a href="#"> Truyện Tranh</a></li>
+                                    <li><a href="#"> Văn Học</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-5 col-sm-7">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Support</h4>
+                                <ul>
+                                    <li><a href="#">Frequently Asked Questions</a></li>
+                                    <li><a href="#">Terms & Conditions</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                    <li><a href="#">Report a Payment Issue</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Footer bottom -->
+                <div class="row align-items-center">
+                    <div class="col-xl-7 col-lg-8 col-md-7">
+                        <div class="footer-copy-right">
+                            <p>
+                                17DH110871 - Trần Anh Đức <span><i class="fa fa-heart-o"></i></span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-lg-4 col-md-5">
+                        <div class="footer-copy-right f-right">
+                            <!-- social -->
+                            <div class="footer-social">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="https://www.facebook.com/profile.php?id=100007159365611"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-behance"></i></a>
+                                <a href="#"><i class="fas fa-globe"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End-->
+    </footer>
+    <!--? Search model Begin -->
+    <div class="search-model-box">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-btn">+</div>
+            <form class="search-model-form" method="get" action="@Url.Action("SearchByPrice","Home")">
+                <span class="flaticon-search" style="font-size:35px;color:#fff">      </span>
+                <input type="text" id="price" name="price" placeholder="Searching Price.....">
+                <input type="submit" value="Search" class="btn btn-default" style="border:1px solid #ccc;width:216px;margin-bottom:15px" />
+            </form>
+        </div>
+    </div>
+    <!-- Search model end -->
+    <!-- JS here -->
+    @Scripts.Render("~/HomeJS1");
+
+</body>
+</html>
+

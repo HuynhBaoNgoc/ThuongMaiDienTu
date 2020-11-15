@@ -1,0 +1,314 @@
+﻿<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Bookie | eCommers</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="~/assets_home/img/favicon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <!-- CSS here -->
+    @Styles.Render("~/HomeCSS")
+</head>
+<body>
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle" style="background-color:rgba(255, 251, 251, 0.57)"></div>
+                <div class="preloader-img pere-text">
+                    <img src="https://toppng.com/uploads/preview/experience-the-discussion-online-library-book-logo-11562996058ru4peza6zq.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <header>
+        <!-- Header Start -->
+        <div class="header-area">
+            <div class="main-header header-sticky">
+                <div class="container-fluid">
+                    <div class="menu-wrapper">
+                        <!-- Logo -->
+                        <div class="logo">
+                            <a href="@Url.Action("Index","Home")" class="logo"><b style="font-size:45px;font-family:'Bookman Old Style';color:#ad2e2e">Bookie</b></a>
+                        </div>
+                        <!-- Main-menu -->
+                        @if (Session["lang"].ToString() == "1")
+                        {
+                            <div class="main-menu d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a href="@Url.Action("Index","Home")">Trang Chủ</a></li>
+                                        <li class="hot"><a href="@Url.Action("Shop","Home")">Cửa Hàng</a></li>
+                                        <li class="new">
+                                            <a href="#">Tài Khoản</a>
+                                            <ul class="submenu">
+                                                @if (Session["kh"] != null)
+                                                {
+
+                                                    <li><a href="@Url.Action("Details","KhachHangs",new { id=Session["UserID"].ToString()})"> @Session["UserName"].ToString()</a></li>
+                                                    <li><a href="@Url.Action("PersonalCart","Home")"> Đơn Hàng</a></li>
+                                                    <li><a href="@Url.Action("LogOut","Authentication")"> Đăng Xuất</a></li>
+                                                }
+                                                else
+                                                {
+                                                    <li><a href="@Url.Action("Login","Authentication")"> Đăng Nhập</a></li>
+                                                    <li><a href="@Url.Action("Register","Authentication")"> Đăng Ký</a></li>
+                                                }
+
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Blog","Home")">Tin Tức</a>
+                                            <ul class="submenu">
+                                                <li><a href="@Url.Action("Blog","Home")">Trang Tin Tức</a></li>
+                                                <li><a href="@Url.Action("BlogDetails","Home")">Chi Tiết</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Cart","Home")">Giỏ Hàng</a>
+                                        </li>
+                                        <li><a href="@Url.Action("Contact","Home")">Liên Lạc</a></li>
+                                        <li>
+                                            <a href="#">Tiếng Việt</a>
+                                            <ul class="submenu">
+                                                <li class="active"><a href="@Url.Action("English","Home")">Tiếng Anh</a></li>
+                                                <li><a href="@Url.Action("Vietnamese","Home")">Tiếng Việt</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="main-menu d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                                        <li class="hot"><a href="@Url.Action("Shop","Home")">Shop</a></li>
+                                        <li class="new">
+                                            <a href="#">User</a>
+                                            <ul class="submenu">
+                                                @if (Session["kh"] != null)
+                                                {
+
+                                                    <li class="active"><a href="@Url.Action("Details","KhachHangs",new { id=Session["UserID"].ToString()})"> @Session["UserName"].ToString()</a></li>
+                                                    <li><a href="@Url.Action("PersonalCart","Home")"> My Order</a></li>
+                                                    <li><a href="@Url.Action("LogOut","Authentication")"> Log Out</a></li>
+                                                }
+                                                else
+                                                {
+                                                    <li><a href="@Url.Action("Login","Authentication")"> Login</a></li>
+                                                    <li><a href="@Url.Action("Register","Authentication")"> Sign Up</a></li>
+                                                }
+
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Blog","Home")">Blog</a>
+                                            <ul class="submenu">
+                                                <li><a href="@Url.Action("Blog","Home")">Blog</a></li>
+                                                <li><a href="@Url.Action("BlogDetails","Home")">Blog Details</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Cart","Home")">Cart</a>
+                                        </li>
+                                        <li><a href="@Url.Action("Contact","Home")">Contact</a></li>
+                                        <li>
+                                            <a href="#">English</a>
+                                            <ul class="submenu">
+                                                <li><a href="@Url.Action("English","Home")">English</a></li>
+                                                <li><a href="@Url.Action("Vietnamese","Home")">Vietnamese</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        }
+
+                        <!-- Header Right -->
+                        <div class="header-right">
+                            <ul>
+                                <li>
+                                    <div class="nav-search search-switch">
+                                        <span class="flaticon-search"></span>
+                                    </div>
+                                </li>
+                                @if (Session["kh"] != null)
+                                {
+                                    <li> <a href="@Url.Action("Details","KhachHangs",new {id = Session["UserID"].ToString() })"><span class="flaticon-user"> @Session["UserName"].ToString()</span></a></li>
+                                    <li><a href="@Url.Action("Cart","Home")"><span class="flaticon-shopping-cart"></span></a> </li>
+                                }
+                                else
+                                {
+                                    <li> <a href="@Url.Action("Login","Authentication")"><span class="flaticon-user"></span></a></li>
+                                    <li><a href="@Url.Action("Cart","Home")"><span class="flaticon-shopping-cart"></span></a> </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Mobile Menu -->
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
+
+
+    @RenderBody()
+
+
+    <br />
+    <hr />
+    <br />
+
+    <div class="shop-method-area">
+        <div class="container">
+            <div class="method-wrapper">
+                <div class="row d-flex justify-content-between">
+                    <div class="col-xl-4 col-lg-4 col-md-6" style="background-color:#ad2e2e">
+                        <div class="single-method mb-40">
+                            <i class="ti-package"></i>
+                            <h6>Free Shipping Method</h6>
+                            <p>Free Shipping With The Receipt More Than 50$.</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6" style="background-color:#ad2e2e">
+                        <div class="single-method mb-40">
+                            <i class="ti-unlock"></i>
+                            <h6>Secure Payment System</h6>
+                            <p>Your Information Will Be Safety With Us.</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6" style="background-color:#ad2e2e">
+                        <div class="single-method mb-40">
+                            <i class="ti-reload"></i>
+                            <h6>Quality Assurance</h6>
+                            <p>The Best Quality With The Best Price.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <footer>
+        <!-- Footer Start-->
+        <hr />
+        <div class="footer-area footer-padding">
+            <div class="container">
+                <div class="row d-flex justify-content-between">
+                    <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6">
+                        <div class="single-footer-caption mb-50">
+                            <div class="single-footer-caption mb-30">
+                                <!-- logo -->
+                                <div class="footer-logo">
+                                    <a href="@Url.Action("Index","Home")" class="logo"><b style="font-size:45px;font-family:'Bookman Old Style';color:#ad2e2e">Bookie</b></a>
+                                </div>
+                                <div class="footer-tittle">
+                                    <div class="footer-pera">
+                                        <p>Always Give You The Best Deal With The Best Services.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-3 col-sm-5">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Quick Links</h4>
+                                <ul>
+                                    <li><a href="#">About</a></li>
+                                    <li><a href="#"> Offers & Discounts</a></li>
+                                    <li><a href="#"> Get Coupon</a></li>
+                                    <li><a href="#">  Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-7">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>New Products</h4>
+                                <ul>
+                                    <li><a href="#">Sách Kinh Doanh</a></li>
+                                    <li><a href="#">Tiểu Thuyết</a></li>
+                                    <li><a href="#"> Truyện Tranh</a></li>
+                                    <li><a href="#"> Văn Học</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-5 col-sm-7">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Support</h4>
+                                <ul>
+                                    <li><a href="#">Frequently Asked Questions</a></li>
+                                    <li><a href="#">Terms & Conditions</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                    <li><a href="#">Report a Payment Issue</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Footer bottom -->
+                <div class="row align-items-center">
+                    <div class="col-xl-7 col-lg-8 col-md-7">
+                        <div class="footer-copy-right">
+                            <p>
+                                17DH110871 - Trần Anh Đức <span><i class="fa fa-heart-o"></i></span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-lg-4 col-md-5">
+                        <div class="footer-copy-right f-right">
+                            <!-- social -->
+                            <div class="footer-social">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="https://www.facebook.com/profile.php?id=100007159365611"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-behance"></i></a>
+                                <a href="#"><i class="fas fa-globe"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End-->
+    </footer>
+
+
+    <div class="search-model-box">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-btn">+</div>
+            <form class="search-model-form" method="get" action="@Url.Action("SearchByPrice","Home")">
+                <span class="flaticon-search" style="font-size:35px;color:#fff">      </span>
+                <input type="text" id="price" name="price" placeholder="Input Price.....">
+                <input type="submit" value="Search" class="btn btn-default" style="border:1px solid #ccc;width:216px;margin-bottom:15px" />
+            </form>
+        </div>
+    </div>
+    <!-- Search model end -->
+    <!-- JS here -->
+
+    @Scripts.Render("~/HomeJS1");
+
+
+
+</body>
+
+</html>
