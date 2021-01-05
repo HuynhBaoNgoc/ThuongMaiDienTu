@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Success";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row" style="margin-top:100px">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4" style="max-height:inherit">
+        <h2 style="text-align:center; color:deepskyblue">Đặt hàng thành công.</h2>
+        <h4 style="text-align:center">Kiểm tra <a style="color:deepskyblue" href="@Url.Action("HistoryOrder","OrderProgress")">lịch sử mua hàng</a> để biết tình trạng hàng của bạn.</h4>
+        <h4 style="text-align:center">Kiểm tra <a style="color:red" href="https://mail.google.com/">Email</a> để biết được đơn hàng đã được xác nhận hay chưa.</h4>
+    </div>
+    <div class="col-lg-4"></div>
+</div>

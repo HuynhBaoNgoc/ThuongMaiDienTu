@@ -1,0 +1,16 @@
+﻿@model IEnumerable<TMDT_Web.Models.Domain.OrderDetail>
+@{
+    ViewBag.Title = "thanhCong";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>thanhCong</h2>
+@foreach (var item in Model)
+{
+    <img src="~/Images/Products/@item.Product.Image" style="height:100px; width:100px" />
+    <h1>@item.OrderDetailID</h1>
+    <h2>@item.Product.ProductName</h2>
+    <h2>@item.QuantityBuy</h2>
+    <h2>@item.Product.Price</h2>
+    <br />
+}

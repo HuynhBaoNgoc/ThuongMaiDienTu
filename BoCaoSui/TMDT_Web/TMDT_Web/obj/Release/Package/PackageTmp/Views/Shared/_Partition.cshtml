@@ -1,0 +1,10 @@
+﻿@if (User.Identity.IsAuthenticated)
+{
+    <li>
+        <a href="@Url.Action("Index","Authentication", new { area=""})">@User.Identity.Name</a>
+    </li>
+}
+else
+{
+    <li> <a href="@Url.Action("Login","Authentication", new { area=""})">Login</a></li>
+}

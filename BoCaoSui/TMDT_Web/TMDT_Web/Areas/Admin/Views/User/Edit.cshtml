@@ -1,0 +1,84 @@
+﻿@model TMDT_Web.Models.Domain.Account
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container" style="padding-top:100px">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="titlepage">
+                <h2 style="text-align:center">Trang Sửa Thông Tin Tài Khoản</h2>
+            </div>
+        </div>
+        <div class="side_bar_blog col-md-3">
+            <h4>Quản Lý</h4>
+            <div class="categary">
+                <ul>
+                    <li><a href="@Url.Action("Index","AdminHome",new { area= "Admin"})"><i class="fa fa-angle-right"></i> Trang Chủ Admin</a></li>
+                    <li><a href="@Url.Action("Management","Finance",new { area= "Admin"})"><i class="fa fa-angle-right"></i>Trang Thống kê</a></li>
+                    <li><a href="@Url.Action("index","discount",new { area= "Admin"})"><i class="fa fa-angle-right"></i>Trang Tạo Mã Giảm Giá</a></li>
+                    <li><a href="@Url.Action("Index","Company",new { area= "Admin"})"><i class="fa fa-angle-right"></i> Công Ty</a></li>
+                    <li><a href="@Url.Action("Index","Brand",new { area= "Admin"})"><i class="fa fa-angle-right"></i> Hãng Của Công Ty</a></li>
+                    <li><a href="@Url.Action("Index","Product",new { area= "Admin"})"><i class="fa fa-angle-right"></i> Sản Phẩm</a></li>
+                    <li><a href="@Url.Action("Index","User",new { area= "Admin"})"><i class="fa fa-angle-right"></i> Tài Khoản</a></li>
+                    <li><a href="@Url.Action("Index","Order",new { area= "Admin"})"><i class="fa fa-angle-right"></i> Đơn Hàng</a></li>
+                    <li><a href="@Url.Action("ordersAccept","Order",new { area= "Admin"})"><i class="fa fa-angle-right"></i> Đơn Hàng Đã Nhận</a></li>
+                    <li><a href="@Url.Action("ordersWaiting","Order",new { area= "Admin"})"><i class="fa fa-angle-right"></i> Đơn Hàng Đang Chờ</a></li>
+                    <li><a href="@Url.Action("ordersTrans","Order",new { area= "Admin"})"><i class="fa fa-angle-right"></i> Đơn Hàng Đã Vận CHuyển</a></li>
+                    <li><a href="@Url.Action("ordersFinish","Order",new { area= "Admin"})"><i class="fa fa-angle-right"></i> Đơn Hàng Hoàn Thành</a></li>
+                    <li><a href="@Url.Action("ordersCancel","Order",new { area= "Admin"})"><i class="fa fa-angle-right"></i> Đơn Hàng Đã Hủy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-9" style="margin-top:30px">
+            <form action="@Url.Action("Edit","User")" method="post" enctype="multipart/form-data">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <input type="hidden" name="UserID" value="@Model.UserID" />
+                            <input type="hidden" name="userName" value="@Model.UserName" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>First Name</td>
+                        <td><input type="text" id="FirstName" name="FirstName" value="@Model.FirstName" /></td>
+                    </tr>
+                    <tr>
+                        <td>Last Name</td>
+                        <td><input type="text" id="LastName" name="LastName" value="@Model.LastName" /></td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+
+                        <td><input type="text" id="Address" name="Address" value="@Model.Address" /></td>
+                    </tr>
+                    <tr>
+                        <td>Age</td>
+                        <td><input type="text" id="Age" name="Age" value="@Model.Age" /></td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td><input type="text" id="Email" name="Email" value="@Model.Email" /></td>
+                    </tr>
+                    <tr>
+                        <td>Password</td>
+                        <td><input type="text" id="Password" name="Password" value="@Model.Password" /></td>
+                    </tr>
+                    <tr>
+                        <td>User role</td>
+                        <td height="60"> @Html.DropDownList("roleID", null, htmlAttributes: new { @class = "form-control", size = "1", @style = "width: 120px" })</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" value="Edit" />
+                        </td>
+                        <td>
+                            @Html.ActionLink("Quay về trang chính", "Index")
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,168 @@
+﻿@model TMDT_Web.Models.Domain.Product
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- section -->
+<div class="section padding_layout_1 product_detail" style="padding-top:100px">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-12 col-md-12">
+                        <div class="product_detail_feature_img hizoom hi2">
+                            <div class='hizoom hi2'> <img class="detail-img" src="~/Images/Products/@Model.Image" alt="#" /> </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-12 col-md-12 product_detail_side detail_style1">
+                        <div class="product-heading">
+                            <h2>@Model.ProductName</h2>
+                        </div>
+                        <div class="product-detail-side"> <span><del>$25.00</del></span><span class="new-price">@Model.Price VND</span></div>
+                        <div class="detail-contant">
+                            <p>
+                                @Model.Description<br>
+                                <span class="stock">Còn lại @Model.Quantity sản phẩm</span>
+                            </p>
+                            <form class="cart" method="post" action="@Url.Action("Buy","Cart", new { id=Model.ProductID})">
+                                <button type="submit" class="btn sqaure_bt">Add to cart</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="full">
+                            <div class="tab_bar_section">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#reviews">Reviews (@ViewBag.countReview)</a> </li>
+                                </ul>
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div id="reviews" class="tab-pane active">
+                                        <div class="product_review">
+                                            <h3>Reviews (@ViewBag.countReview)</h3>
+                                            @foreach (var item in ViewBag.review)
+                                            {
+                                                <div class="commant-text row">
+                                                    <div class="col-lg-2 col-md-2 col-sm-4">
+                                                        <div class="profile"> <img class="img-responsive" src="~/Images/Avatar/@item.Account.Avatar" alt="#"> </div>
+                                                    </div>
+                                                    <div class="col-lg-10 col-md-10 col-sm-8">
+                                                        <h5>@item.Account.UserName</h5>
+                                                        <p><span class="c_date">@item.DateTime</span> | <span><a rel="nofollow" class="comment-reply-link" href="#">Reply</a></span></p>
+                                                        <span class="rating"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o" aria-hidden="true"></i> </span>
+                                                        <p class="msg">@item.Comment</p>
+                                                    </div>
+                                                </div>
+                                            }
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div>
+                                                        <label style="font-weight:bold; color:red">@ViewBag.error</label>
+                                                    </div>
+                                                    <div class="full review_bt_section">
+                                                        <div class="float-right"> <a class="btn sqaure_bt" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Leave a Review</a> </div>
+                                                    </div>
+                                                    <div class="full">
+                                                        <div id="collapseExample" class="full collapse commant_box">
+                                                            <form id="review" accept-charset="UTF-8" action="@Url.Action("Review","Home", new { proid=Model.ProductID})" method="post">
+                                                                <input id="ratings-hidden" name="rating" type="hidden">
+                                                                <textarea class="form-control animated" cols="50" id="new-review" name="Comment" placeholder="Enter your review here..." required=""></textarea>
+
+                                                            </form>
+                                                            <div class="full_bt center">
+                                                                <button class="btn sqaure_bt" onclick="reviewBtn()">Comment</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Sản phẩm liên quan-->
+                <div class="brand">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="titlepage">
+                                    <h2>Sản phẩm chúng tôi</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="brand-bg">
+                        <div class="container">
+                            <div class="row">
+                                @foreach (var item in ViewData["products"] as IEnumerable<TMDT_Web.Models.Domain.Product>)
+                                {
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin">
+                                        <div class="brand_box">
+                                            <img src="~/Images/Products/@item.Image" alt="img" />
+                                            <h3><strong class="red">@item.Price</strong>VND</h3>
+                                            <span>@item.ProductName</span>
+                                            <a href="@Url.Action("Detail","home",new { id=item.ProductID})">Chi tiết!</a>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Kết Sản phẩm liên quan-->
+            </div>
+            <!-- Side bar -->
+            <div class="col-md-3">
+                <div class="side_bar">
+                    <div class="side_bar_blog">
+                        <h4>Laptop Companies</h4>
+                        <div class="categary">
+                            <ul>
+                                @foreach (var item in ViewBag.SideBar)
+                                {
+                                    <li><a href="@Url.Action("CompanySidebar","Home", new { companysidebar=item.CompanyID})"><i class="fa fa-angle-right"></i>@item.CompanyName</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="side_bar">
+                    <div class="side_bar_blog">
+                        <h4>Laptop Brands</h4>
+                        <div class="categary">
+                            <ul>
+                                @foreach (var item in ViewBag.SideBarBrand)
+                                {
+                                    <li><a href="@Url.Action("BrandSidebar","Home", new { brandsidebar=item.BrandID})"><i class="fa fa-angle-right"></i>@item.BrandName</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Kết side bar -->
+        </div>
+    </div>
+</div>
+<!-- end section -->
+
+
+<script>
+    function reviewBtn() {
+        @*if (@User.Identity.IsAuthenticated) {
+            document.getElementById("review").submit();
+        }
+        else {
+            document.getElementById("error").innerHTML = "You have to login to comment this post!";
+        }*@
+        document.getElementById("review").submit();
+    }
+</script>
