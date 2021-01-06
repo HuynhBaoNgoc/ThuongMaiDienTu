@@ -49,23 +49,31 @@ namespace TMDT_Web.Areas.Admin.Controllers
                 }
 
             }
-            //Mail
-            MailMessage msg = new MailMessage();
-            msg.From = new MailAddress("punnhox45@gmail.com");
-            msg.To.Add(accept.Email);
-            msg.Subject = "BoCaoSui";
-            msg.Body = "Mã đơn hàng của bạn: " + accept.OrderID + ", đã được xác nhận";
-            //msg.Priority = MailPriority.High;
-            using (SmtpClient client = new SmtpClient())
+            if (accept.Email == "")
             {
-                client.EnableSsl = true;
-                client.UseDefaultCredentials = false;
-                client.Credentials = new NetworkCredential("punnhox45@gmail.com", "16011998");
-                client.Host = "smtp.gmail.com";
-                client.Port = 587;
-                client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                client.Send(msg);
+
             }
+            else
+            {
+                //Mail
+                MailMessage msg = new MailMessage();
+                msg.From = new MailAddress("breamermaruar@gmail.com");
+                msg.To.Add(accept.Email);
+                msg.Subject = "BoCaoSui";
+                msg.Body = "Mã đơn hàng của bạn: " + accept.OrderID + ", đã được xác nhận";
+                //msg.Priority = MailPriority.High;
+                using (SmtpClient client = new SmtpClient())
+                {
+                    client.EnableSsl = true;
+                    client.UseDefaultCredentials = false;
+                    client.Credentials = new NetworkCredential("breamermaruar@gmail.com", "Baongoc123");
+                    client.Host = "smtp.gmail.com";
+                    client.Port = 587;
+                    client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    client.Send(msg);
+                }
+            }
+            
 
 
             return RedirectToAction("index", "order");
@@ -120,24 +128,31 @@ namespace TMDT_Web.Areas.Admin.Controllers
                 db.Entry(increaseProduct).State = EntityState.Modified;
                 db.SaveChanges();
 
-
-                //Mail
-                MailMessage msg = new MailMessage();
-                msg.From = new MailAddress("punnhox45@gmail.com");
-                msg.To.Add(cancel.Email);
-                msg.Subject = "BoCaoSui";
-                msg.Body = "Mã đơn hàng của bạn: " + cancel.OrderID + ", đã bị hủy";
-                //msg.Priority = MailPriority.High;
-                using (SmtpClient client = new SmtpClient())
+                if(cancel.Email == "")
                 {
-                    client.EnableSsl = true;
-                    client.UseDefaultCredentials = false;
-                    client.Credentials = new NetworkCredential("punnhox45@gmail.com", "16011998");
-                    client.Host = "smtp.gmail.com";
-                    client.Port = 587;
-                    client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                    client.Send(msg);
+
                 }
+                else
+                {
+                    //Mail
+                    MailMessage msg = new MailMessage();
+                    msg.From = new MailAddress("breamermaruar@gmail.com");
+                    msg.To.Add(cancel.Email);
+                    msg.Subject = "BoCaoSui";
+                    msg.Body = "Mã đơn hàng của bạn: " + cancel.OrderID + ", đã bị hủy";
+                    //msg.Priority = MailPriority.High;
+                    using (SmtpClient client = new SmtpClient())
+                    {
+                        client.EnableSsl = true;
+                        client.UseDefaultCredentials = false;
+                        client.Credentials = new NetworkCredential("breamermaruar@gmail.com", "Baongoc123");
+                        client.Host = "smtp.gmail.com";
+                        client.Port = 587;
+                        client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                        client.Send(msg);
+                    }
+                }
+                
             }
             else
             {
@@ -150,23 +165,31 @@ namespace TMDT_Web.Areas.Admin.Controllers
                 increaseProduct.Product.Quantity += 1;
                 db.Entry(increaseProduct).State = EntityState.Modified;
                 db.SaveChanges();
-                //Mail
-                MailMessage msg = new MailMessage();
-                msg.From = new MailAddress("punnhox45@gmail.com");
-                msg.To.Add(cancel.Email);
-                msg.Subject = "BoCaoSui";
-                msg.Body = "Mã đơn hàng của bạn: " + cancel.OrderID + ", đã bị hủy";
-                //msg.Priority = MailPriority.High;
-                using (SmtpClient client = new SmtpClient())
+                if (cancel.Email == "")
                 {
-                    client.EnableSsl = true;
-                    client.UseDefaultCredentials = false;
-                    client.Credentials = new NetworkCredential("punnhox45@gmail.com", "16011998");
-                    client.Host = "smtp.gmail.com";
-                    client.Port = 587;
-                    client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                    client.Send(msg);
+
                 }
+                else
+                {
+                    //Mail
+                    MailMessage msg = new MailMessage();
+                    msg.From = new MailAddress("breamermaruar@gmail.com");
+                    msg.To.Add(cancel.Email);
+                    msg.Subject = "BoCaoSui";
+                    msg.Body = "Mã đơn hàng của bạn: " + cancel.OrderID + ", đã bị hủy";
+                    //msg.Priority = MailPriority.High;
+                    using (SmtpClient client = new SmtpClient())
+                    {
+                        client.EnableSsl = true;
+                        client.UseDefaultCredentials = false;
+                        client.Credentials = new NetworkCredential("breamermaruar@gmail.com", "Baongoc123");
+                        client.Host = "smtp.gmail.com";
+                        client.Port = 587;
+                        client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                        client.Send(msg);
+                    }
+                }
+                
             }
             return RedirectToAction("index", "order");
         }

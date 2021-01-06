@@ -98,7 +98,7 @@
                                     {
                                         <div class="col-sm-2">
                                             <form action="@Url.Action("Accept", "Order", new { id = item.OrderID })">
-                                                <input type="submit" />
+                                                <input type="submit" value="OK"/>
                                                 <label>Accept Order</label>
                                             </form>
                                         </div>}
@@ -106,7 +106,7 @@
                                     {
                                         <div class="col-sm-2">
                                             <form action="@Url.Action("Transport", "Order", new { id = item.OrderID })">
-                                                <input type="submit" />
+                                                <input type="submit" value="OK"/>
                                                 <label>Trans</label>
                                             </form>
                                         </div>}
@@ -114,7 +114,7 @@
                                     {
                                         <div class="col-sm-2">
                                             <form action="@Url.Action("Finish", "Order", new { id = item.OrderID })">
-                                                <input type="submit" />
+                                                <input type="submit" value="OK"/>
                                                 <label>Finish</label>
                                             </form>
                                         </div>
@@ -123,20 +123,19 @@
                                     {
                                         <div class="col-sm-2">
                                             <form action="@Url.Action("Cancel", "Order", new { id = item.OrderID })">
-                                                <input type="submit" />
+                                                <input type="submit" value="OK"/>
                                                 <label>Cancel Order</label>
                                             </form>
                                         </div>
                                     }
-                                    @if (item.Status == 4)
-                                    {
+                                    
                                         <div class="col-sm-2">
                                             <form action="@Url.Action("Detail", "Order", new { id = item.OrderID })">
                                                 <input type="submit" value="Xem" />
                                                 <label>Detail Order</label>
                                             </form>
                                         </div>
-                                    }
+                                    
                                 </div>
                             </td>
                         </tr>
@@ -186,7 +185,7 @@
                                     {
                                         <div class="col-sm-2">
                                             <form action="@Url.Action("Accept", "Order", new { id = item.OrderID })">
-                                                <input type="submit" />
+                                                <input type="submit" value="OK"/>
                                                 <label>Accept Order</label>
                                             </form>
                                         </div>}
@@ -194,7 +193,7 @@
                                     {
                                         <div class="col-sm-2">
                                             <form action="@Url.Action("Transport", "Order", new { id = item.OrderID })">
-                                                <input type="submit" />
+                                                <input type="submit" value="OK"/>
                                                 <label>Trans</label>
                                             </form>
                                         </div>}
@@ -202,7 +201,7 @@
                                     {
                                         <div class="col-sm-2">
                                             <form action="@Url.Action("Finish", "Order", new { id = item.OrderID })">
-                                                <input type="submit" />
+                                                <input type="submit" value="OK"/>
                                                 <label>Finish</label>
                                             </form>
                                         </div>
@@ -211,20 +210,19 @@
                                     {
                                         <div class="col-sm-2">
                                             <form action="@Url.Action("Cancel", "Order", new { id = item.OrderID })">
-                                                <input type="submit" />
+                                                <input type="submit" value="OK"/>
                                                 <label>Cancel Order</label>
                                             </form>
                                         </div>
                                     }
-                                    @if (item.Status == 4)
-                                    {
+                                    
                                         <div class="col-sm-2">
                                             <form action="@Url.Action("Detail", "Order", new { id = item.OrderID })">
                                                 <input type="submit" value="Xem" />
                                                 <label>Detail Order</label>
                                             </form>
                                         </div>
-                                    }
+                                    
                                 </div>
                             </td>
                         </tr>
